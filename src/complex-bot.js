@@ -1,14 +1,12 @@
 'use strict';
 
 let Bot = require('javascript-jass-bot');
+let TrumpfRequestor = require('./trumpf-requestor');
 
 class BotStrategy {
     requestTrumpf(cards) {
-        // e.g. choose TRUMPF SPADES
-        let response = {};
-        response.mode = 'TRUMPF';
-        response.trumpfColor = 'SPADES';
-        return response;
+        let strategy = new TrumpfRequestor();
+        return strategy.requestTrumpf(cards);
     }
 
     playCard(myCards, playedCards, gameState) {
