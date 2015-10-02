@@ -1,6 +1,7 @@
 'use strict';
 
 let Bot = require('javascript-jass-bot');
+let _ = require('lodash');
 let TrumpfRequestor = require('./trumpf-requestor');
 
 class BotStrategy {

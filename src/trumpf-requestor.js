@@ -84,7 +84,15 @@ class TrumpfRequestor {
             return this.undeufe();
         }
 
-        return this.possibilites[Math.floor(Math.random() * this.possibilites.length)];
+        // Rule 8: Trumpf ansagen mit Bauer
+        if (ca.bauer().length >= 1) {
+            return this.trumpf(ca.bauer()[0]);
+        }
+
+        // Rule 9: Trumpf mit höchsten Anzahl Karten
+        return this.trumpf(ca.colorsWithLength()[0].color);
+
+        // return this.possibilites[Math.floor(Math.random() * this.possibilites.length)];
     }
 
     calculateAnalytics(cards) {
@@ -108,11 +116,22 @@ class TrumpfRequestor {
             colorsWithNumberOfCardsLargerEqualThan: function (n) {
                 return _.filter(this.colors, (color) => this.numberOfCardsForColor(color) >= n);
             },
+            colorsWithLength: function () {
+                return _.sortByOrder(_.map(_.groupBy(cards, 'color'), (v, k) => {
+                    return {
+                        color: k,
+                        numberOfCards: v.length
+                    };
+                }), 'numberOfCards', 'DESC');
+            },
             asse: function () {
                 return this.colorsContainingCard(14);
             },
             koenige: function () {
                 return this.colorsContainingCard(13);
+            },
+            bauer: function () {
+                return this.colorsContainingCard(11);
             },
             siebner: function () {
                 return this.colorsContainingCard(7);

@@ -290,5 +290,87 @@ describe('TrumpfRequestor', function () {
                 }]);
             assert.equal('UNDEUFE', result.mode);
         });
+        
+        it('TRUMPF ansagen mit Bauer', function () {
+            let result = trumpfRequestor.requestTrumpf([{
+                    number: 9,
+                    color: 'DIAMONDS'
+                },
+                {
+                    number: 6,
+                    color: 'CLUBS'
+                },
+                {
+                    number: 13,
+                    color: 'CLUBS'
+                },
+                {
+                    number: 9,
+                    color: 'HEARTS'
+                },
+                {
+                    number: 10,
+                    color: 'SPADES'
+                },
+                {
+                    number: 11,
+                    color: 'HEARTS'
+                },
+                {
+                    number: 6,
+                    color: 'SPADES'
+                },
+                {
+                    number: 14,
+                    color: 'SPADES'
+                },
+                {
+                    number: 6,
+                    color: 'DIAMONDS'
+                }]);
+            assert.equal('TRUMPF', result.mode);
+            assert.equal('HEARTS', result.trumpfColor);
+        });
+        
+        it('TRUMPF ansagen mit höchster Anzahl Karten', function () {
+            let result = trumpfRequestor.requestTrumpf([{
+                    number: 9,
+                    color: 'DIAMONDS'
+                },
+                {
+                    number: 6,
+                    color: 'CLUBS'
+                },
+                {
+                    number: 13,
+                    color: 'CLUBS'
+                },
+                {
+                    number: 9,
+                    color: 'HEARTS'
+                },
+                {
+                    number: 10,
+                    color: 'SPADES'
+                },
+                {
+                    number: 10,
+                    color: 'HEARTS'
+                },
+                {
+                    number: 6,
+                    color: 'SPADES'
+                },
+                {
+                    number: 14,
+                    color: 'SPADES'
+                },
+                {
+                    number: 6,
+                    color: 'DIAMONDS'
+                }]);
+            assert.equal('TRUMPF', result.mode);
+            assert.equal('SPADES', result.trumpfColor);
+        });
     });
 });
