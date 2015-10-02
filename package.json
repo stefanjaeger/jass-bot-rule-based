@@ -1,0 +1,23 @@
+{
+    "name": "my-jass-bot",
+    "version": "1.0.0",
+    "description": "javascript jass bot implementation",
+    "main": "index.js",
+    "scripts": {
+        "prestart": "npm i",
+        "start": "parallelshell \"npm run runBotSimple\" \"npm run runBotSimple\" \"npm run runBotComplex\" \"npm run runBotComplex\"",
+        "runBotSimple": "node src/simple-bot.js",
+        "runBotComplex": "node src/complex-bot.js",
+        "test": "mocha --recursive test",
+        "testwatch": "mocha -w --recursive test"
+    },
+    "author": "Stefan Jäger <stefanjaeger@bluewin.ch> (http://stefanjaeger.ch)",
+    "license": "ISC",
+    "dependencies": {
+        "javascript-jass-bot": "0.0.3"
+    },
+    "devDependencies": {
+        "mocha": "^2.3.3",
+        "parallelshell": "^2.0.0"
+    }
+}
