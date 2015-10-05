@@ -49,6 +49,8 @@ class CardDistributionCalculator {
         result.boeckliColors = this.calculateBoeckliColors(gameState, result.playedCardsPerColor, result.myCountOfCardsPerColor);
 
         result.unplayedCards = this.calculateUnplayedCards(gameState, result.allPlayedCards, playedCards);
+        
+        result.unplayedCardsPerColor = this.calculateUnplayedCardsPerColor(result.unplayedCards);
 
         if (gameState.currentTrumpfMode === 'TRUMPF') {
             result.notTrumpfColors = _.filter(COLORS, color => color !== gameState.currentTrumpfColor);
@@ -97,6 +99,14 @@ class CardDistributionCalculator {
     calculateUnplayedCards(gameState, allPlayedCards, playedCards) {
         return _.filter(_.filter(this.fullDeck, card => !_.findWhere(allPlayedCards, card)), card => !_.findWhere(playedCards, card));
     }
+    
+    calculateUnplayedCardsPerColor(unplayedCards) {
+        let unplayedCardsPerColor = [];
+        _.forEach(COLORS, color => {
+            unplayedCardsPerColor.push(_.filter(unplayedCards, card => card.color == color));
+        });            
+        return unplayedCardsPerColor;
+     }
 
     calculatePlayerWhoCouldNotPlayColor(gameState) {
         let missingColor = [[], [], [], []];

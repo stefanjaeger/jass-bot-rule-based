@@ -30,7 +30,7 @@ class BotStrategy {
     getPlayStrategy(trumpfMode) {
         switch(trumpfMode) {
             case 'UNDEUFE':
-            case 'OBEABA':
+            case 'OBEABE':
                 return new UndeufeObeabeStrategy();
             case 'TRUMPF':
                 return new TrumpfStrategy();
