@@ -1,8 +1,9 @@
 'use strict';
 
-let Bot = require('javascript-jass-bot');
+let Bot = require('../../javascript-jass-bot/index');
 let _ = require('lodash');
 let TrumpfRequestor = require('./trumpf-requestor');
+let CardDistributionCalculator = require('./card-distribution-calculator');
 
 class BotStrategy {
     requestTrumpf(cards) {
@@ -11,6 +12,24 @@ class BotStrategy {
     }
 
     playCard(myCards, playedCards, gameState) {
+        let cardDistributionCalculator = new CardDistributionCalculator();
+        let cardDistribution = cardDistributionCalculator.estimateCardDistribution(myCards, playedCards, gameState);
+
+        //console.log(cardDistribution);
+
+        if (gameState.currentTrumpfMode === 'UNDEUFE' || gameState.currentTrumpfMode === 'OBEABE') {
+            if (cardDistribution.boeckliColors.length > 0) {
+                console.log('play böckli UNDEUFE/OBEABE');
+                return _.filter(myCards, card => card.color === cardDistribution.boeckliColors[0])[0];
+            }
+        }
+        if (gameState.currentTrumpfMode === 'TRUMPF') {
+            if (cardDistribution.playedCardsPerColor[gameState.currentTrumpfColor] === 9 && cardDistribution.boeckliColors.length > 0) {
+                console.log('play böckli TRUMPF');
+                return _.filter(myCards, card => card.color === cardDistribution.boeckliColors[0])[0];
+            }
+        }
+
         // e.g. play random
         return myCards[Math.floor(Math.random() * myCards.length)];
     }
