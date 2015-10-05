@@ -44,9 +44,9 @@ class CardDistributionCalculator {
 
         result.playedCardsPerColor = this.calculatePlayedCardsPerColor(gameState, result.allPlayedCards);
 
-        result.myCountOfCards = this.calculateMyCountOfCardsPerColor(gameState, myCards);
+        result.myCountOfCardsPerColor = this.calculateMyCountOfCardsPerColor(gameState, myCards);
 
-        result.boeckliColors = this.calculateBoeckliColors(gameState, result.playedCardsPerColor, result.myCountOfCards);
+        result.boeckliColors = this.calculateBoeckliColors(gameState, result.playedCardsPerColor, result.myCountOfCardsPerColor);
 
         result.unplayedCards = this.calculateUnplayedCards(gameState, result.allPlayedCards, playedCards);
 
