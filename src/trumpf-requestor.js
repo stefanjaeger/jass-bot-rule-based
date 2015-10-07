@@ -88,8 +88,18 @@ class TrumpfRequestor {
         if (ca.bauer().length >= 1) {
             return this.trumpf(ca.bauer()[0]);
         }
+        
+        // Rule 9: 2 Asse, 2 Könige
+        if (ca.asse().length >= 2 && ca.koenige().length >= 2) {
+            return this.obeabe();
+        }
 
-        // Rule 9: Trumpf mit höchsten Anzahl Karten
+        // Rule 10: 2 Sechser, 2 Siebner
+        if (ca.sechser().length >= 2 && ca.siebner().length >= 2) {
+            return this.undeufe();
+        }
+
+        // Rule 11: Trumpf mit höchsten Anzahl Karten
         return this.trumpf(ca.colorsWithLength()[0].color);
 
         // return this.possibilites[Math.floor(Math.random() * this.possibilites.length)];
