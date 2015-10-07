@@ -25,4 +25,5 @@ class BotStrategy {
     }
 }
 
+//new Bot('simple').withStrategy(new BotStrategy()).connect('sleepy-garden-3994.herokuapp.com');
 new Bot('simple').withStrategy(new BotStrategy()).connect('localhost:3000');
