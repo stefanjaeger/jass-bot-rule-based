@@ -54,7 +54,7 @@ class TrumpfStrategy {
         }
         
         // Rule: if last player and can't "färben" --> "verwerfe" lowest card
-        let canFaerben = _.filter(myCards, (c) => c.color === playedCards[0]);
+        let canFaerben = _.filter(myCards, (c) => c.color === playedCards[0].color);
         if (canFaerben.length === 0) {
             // play low points
             // TODO: filter also Böckli Colors

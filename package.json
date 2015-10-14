@@ -14,7 +14,7 @@
   "author": "Stefan Jäger <stefanjaeger@bluewin.ch> (http://stefanjaeger.ch)",
   "license": "ISC",
   "dependencies": {
-    "javascript-jass-bot": "0.0.3",
+    "javascript-jass-bot": "0.0.5",
     "lodash": "^3.10.1"
   },
   "devDependencies": {
