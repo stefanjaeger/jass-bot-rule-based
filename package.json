@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm i",
-    "start": "parallelshell \"npm run runBotSimple\" \"npm run runBotSimple\" \"npm run runBotComplex\" \"npm run runBotComplex\"",
+    "start": "parallelshell \"npm run runBotSimple\" \"npm run runBotSimple\" \"npm run runBotMonika\" \"npm run runBotMonika\"",
     "runBotSimple": "node src/simple-bot.js",
     "runBotComplex": "node src/complex-bot.js",
+    "runBotMonika": "node src/monika-bot.js",
     "test": "mocha --recursive test",
     "testwatch": "mocha -w --recursive test"
   },
