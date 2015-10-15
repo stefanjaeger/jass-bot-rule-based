@@ -1,7 +1,5 @@
 'use strict';
 
-let Bot = require('javascript-jass-bot');
-
 class BotStrategy {
     requestTrumpf(cards) {
         // e.g. choose TRUMPF SPADES
@@ -25,5 +23,7 @@ class BotStrategy {
     }
 }
 
+module.exports = BotStrategy;
+
 //new Bot('simple').withStrategy(new BotStrategy()).connect('sleepy-garden-3994.herokuapp.com');
-new Bot('simple').withStrategy(new BotStrategy()).connect('localhost:3000');
+

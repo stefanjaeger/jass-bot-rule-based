@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm i",
-    "start": "parallelshell \"npm run runBotSimple\" \"npm run runBotSimple\" \"npm run runBotMonika\" \"npm run runBotMonika\"",
-    "runBotSimple": "node src/simple-bot.js",
-    "runBotComplex": "node src/complex-bot.js",
-    "runBotMonika": "node src/monika-bot.js",
+    "start": "node src/local-runner.js",
+    "tournament": "node src/tournament-runner.js",
     "test": "mocha --recursive test",
     "testwatch": "mocha -w --recursive test"
   },

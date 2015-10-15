@@ -53,4 +53,4 @@ class BotStrategy {
 module.exports = BotStrategy;
 
 //new Bot('complex').withStrategy(new BotStrategy()).connect('sleepy-garden-3994.herokuapp.com');
-new Bot('complex').withStrategy(new BotStrategy()).connect('localhost:3000');
+new Bot('monika').withStrategy(new BotStrategy()).connect('localhost:3000');
