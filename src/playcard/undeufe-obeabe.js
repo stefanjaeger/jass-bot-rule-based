@@ -1,7 +1,7 @@
 'use strict';
 
 let _ = require('lodash');
-let CardDistributionCalculator = require('../card-distribution-calculator');
+let CardDistributionCalculator = require('../legacy/card-distribution-calculator');
 
 class UndeufeObeabeStrategy {    
     playCard(myCards, playedCards, gameState) {

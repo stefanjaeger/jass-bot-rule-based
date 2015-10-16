@@ -4,62 +4,8 @@ let _ = require('lodash');
 
 const trumpfOrder = [11, 9, 14, 13, 12, 10, 8, 7, 6];
 
-const BESTCARD = "BestCard";
-const WEAKESTCARD = "WeakestCard";
-const LOWSTCARDTOSTICH = "LowestCardToStich";
-
-class TrumpfStrategy {
-    playCard(myCards, playedCards, gameState, strategyState) {
-        let playAggressive = strategyState.angesagt || strategyState.partnerAngesagt;
-        let playableCards = this.getPlayableCards(myCards, playedCards, gameState, strategyState);
-        let playType = BESTCARD;
-
-        switch (playedCards.length) {
-        case 0:
-            playType = this.firstPosition(playableCards, playedCards, gameState, strategyState)
-            break;
-        case 1:
-            playType = this.secondPosition(playableCards, playedCards, gameState, strategyState)
-            break;
-        case 2:
-            playType = this.thirdPosition(playableCards, playedCards, gameState, strategyState)
-            break;
-        case 3:
-            playType = this.fourdPosition(playableCards, playedCards, gameState, strategyState)
-            break;
-        }
-
-
-        return this[`play${playType}`](playableCards, playedCards, gameState, strategyState);
-    }
-
-    getPlayableCards(myCards, playedCards, gameState, strategyState) {
-        if (playedCards.length === 0) {
-            return myCards;
-        }
-        if (!myCards.some(c => c.color === playedCards[0].color)) {
-            return myCards;
-        }
-        return myCards.filter(c => c.color === gameState.currentTrumpfColor || c.color === playedCards[0].color);
-    }
-
-    firstPosition(myCards, playedCards, gameState, strategyState) {
-        return (strategyState.angesagt || strategyState.partnerAngesagt) ? BESTCARD : WEAKESTCARD;
-    }
-
-    secondPosition(myCards, playedCards, gameState, strategyState) {
-        return (strategyState.angesagt || strategyState.partnerAngesagt) ? BESTCARD : WEAKESTCARD;
-    }
-
-    thirdPosition(myCards, playedCards, gameState, strategyState) {
-        return (strategyState.angesagt || strategyState.partnerAngesagt) ? BESTCARD : WEAKESTCARD;
-    }
-
-    fourdPosition(myCards, playedCards, gameState, strategyState) {
-        return LOWSTCARDTOSTICH;
-    }
-
-    playBestCard(playableCards, playedCards, gameState, strategyState) {
+class JassPlayActions {
+    static playBestCard(playableCards, playedCards, gameState, strategyState) {
         let trumpfs = _.filter(playableCards, card => card.color === gameState.currentTrumpfColor);
 
         let orderedTrumpfs = [];
@@ -76,7 +22,7 @@ class TrumpfStrategy {
         return _.sortByOrder(playableCards, 'number', 'desc')[0];
     }
 
-    playWeakestCard(playableCards, playedCards, gameState, strategyState) {
+    static playWeakestCard(playableCards, playedCards, gameState, strategyState) {
         let notTrumpf = _.filter(playableCards, card => card.color !== gameState.currentTrumpfColor);
         let notTrumpfOrdered = _.sortByOrder(notTrumpf, 'number', 'asc');
         if (notTrumpfOrdered.length > 0) {
@@ -99,7 +45,7 @@ class TrumpfStrategy {
     }
 
 
-    playLowestCardToStich(playableCards, playedCards, gameState, strategyState) {
+    static playLowestCardToStich(playableCards, playedCards, gameState, strategyState) {
         // TODO right now without Trumpf
         if (!_.some(playedCards, c => c.color === gameState.currentTrumpfColor)) {
             let cardOpponentAIndex = playedCards[0].number;
@@ -134,10 +80,7 @@ class TrumpfStrategy {
             
             return this.playWeakestCard(playableCards, playedCards, gameState, strategyState);
         }
-
-
-
     }
 }
 
-module.exports = TrumpfStrategy;
+module.exports = JassPlayActions;

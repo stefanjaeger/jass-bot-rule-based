@@ -17,6 +17,7 @@
     "lodash": "^3.10.1"
   },
   "devDependencies": {
+    "chai": "^3.3.0",
     "mocha": "^2.3.3",
     "parallelshell": "^2.0.0"
   }
